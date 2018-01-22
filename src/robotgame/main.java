@@ -155,7 +155,12 @@ public class main extends Application{
 
 		PlayerInputStack p = new PlayerInputStack();
 
-		root.getChildren().addAll(up, left, right, p);
+		InLvlMenu options = new InLvlMenu(BUTTEN_SIZE);
+		options.setTranslateX(WORLD_WIDTH-BUTTEN_SIZE- BUTTEN_SIZE/10);
+		options.setTranslateY(BUTTEN_SIZE/10);
+		
+		
+		root.getChildren().addAll(up, left, right, p, options);
 
 
 	}

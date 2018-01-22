@@ -75,11 +75,11 @@ public class MapInterpreter extends Group {
 					break;
 
 				case ' ':
-					b = new BackgroundBlock(SQUARE_SIZE);
+					b = null;
 					break;
 
 				default:
-					b = new BackgroundBlock(SQUARE_SIZE);
+					b =null;
 					break;
 
 				}
