@@ -126,13 +126,14 @@ public class main extends Application{
 			primaryStage.setScene(menu);
 
 		});
-
-
-		back.setFont(main.getGameFont());		
+		
 		lvlCompletRoot.getChildren().addAll(lvlCleared, back);
 
 		lvlComplet = new Scene(lvlCompletRoot, WORLD_WIDTH,WORLD_HIGHT);
 
+		
+		/*--------------------------------------------*/
+		
 	}
 
 
@@ -156,8 +157,6 @@ public class main extends Application{
 		PlayerInputStack p = new PlayerInputStack();
 
 		InLvlMenu options = new InLvlMenu(BUTTEN_SIZE);
-		options.setTranslateX(WORLD_WIDTH-BUTTEN_SIZE- BUTTEN_SIZE/10);
-		options.setTranslateY(BUTTEN_SIZE/10);
 		
 		
 		root.getChildren().addAll(up, left, right, p, options);
@@ -173,7 +172,7 @@ public class main extends Application{
 			e.printStackTrace();
 		}
 
-		scene = new Scene(root,WORLD_WIDTH,WORLD_HIGHT, Color.rgb(234, 250, 255));
+		scene = new Scene(root,WORLD_WIDTH,WORLD_HIGHT);
 
 		createButtens();
 
@@ -184,6 +183,12 @@ public class main extends Application{
 	public static void goToLvlSelect(){
 
 		primaryStage.setScene(levelSelect);
+		
+	}
+	
+	public static void goToMainMenu(){
+
+		primaryStage.setScene(menu);
 		
 	}
 	

@@ -21,7 +21,7 @@ public class PlayerInputStack extends Group{
 		Rectangle bg = new Rectangle(10*(Button.BUTTON_SIZE + 2*Button.BUTTON_SIZE/5) + 2*Button.BUTTON_SIZE/5  ,  2* Button.BUTTON_SIZE);
 		bg.setTranslateX(main.WORLD_WIDTH/12);
 		bg.setTranslateY((main.WORLD_HIGHT - main.WORLD_HIGHT*19/84) - Button.BUTTON_SIZE/2);
-		bg.setFill(Color.rgb(172, 188, 191));
+		bg.setFill(Color.rgb(136, 143, 233));
 		this.getChildren().add(bg);
 
 		newButtonSetUp();

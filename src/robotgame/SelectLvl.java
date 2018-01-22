@@ -1,6 +1,7 @@
 package robotgame;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import javafx.scene.Group;
 import javafx.scene.control.Label;
@@ -13,6 +14,7 @@ public class SelectLvl extends Group{
 	private int hori;
 	private int vert;
 
+	public ArrayList<NewLvl> lvlArr = new ArrayList<>();
 
 	public SelectLvl(Stage primaryStage){
 
@@ -31,6 +33,7 @@ public class SelectLvl extends Group{
 					NewLvl newLvl = new NewLvl(btnSize, s[vert*4 + hori]);
 					newLvl.setTranslateX(hori * main.WORLD_WIDTH/5 + main.WORLD_WIDTH/6);
 					newLvl.setTranslateY(vert * main.WORLD_HIGHT/5+ main.WORLD_HIGHT/8);
+					lvlArr.add(newLvl);
 					newLvl.setOnMouseClicked(event->{
 
 						main.createGame(newLvl.getName());

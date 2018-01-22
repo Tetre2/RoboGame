@@ -24,29 +24,38 @@ public abstract class Button extends Group{
 		bg = new Rectangle(buttonSize, buttonSize);
 		bg.setArcHeight(buttonSize/3);
 		bg.setArcWidth(buttonSize/3);
-		bg.setFill(Color.rgb(79, 83, 84));
+		bg.setFill(Color.rgb(160, 204, 223));
+		bg.setStrokeWidth(buttonSize/15);
+		bg.setStroke(Color.BLACK);
 		arrow = new Polygon(buttonSize/3, buttonSize*2/3, buttonSize/2,buttonSize*1/3,  buttonSize*2/3,buttonSize*2/3);
 		arrow.setVisible(false);
 
 		this.getChildren().addAll(bg, arrow);
 
-		this.setOnMouseClicked(evetn->{
+		this.setOnMousePressed(event->{
 
+			bg.setFill(Color.rgb(107, 161, 183));
 			PlayerInputStack.addToPlayerInputStack(this);
+			
+		});
 
+		this.setOnMouseReleased(event->{
+
+			bg.setFill(Color.rgb(160, 204, 223));
+			
 		});
 
 
 	}
-	
+
 	public Direction getDirection(){
 		return direction;
 	}
-	
+
 	public void setDirection(Direction d){
 		this.direction = d;
 	}
-	
+
 	public void removeButton(){
 		arrow.setVisible(false);
 		arrow.setRotate(0);
@@ -58,7 +67,7 @@ public abstract class Button extends Group{
 		getArrow().setRotate(270);
 		getArrow().setVisible(true);
 		direction = Direction.LEFT;
-		
+
 	}
 
 	public void setRight(){

@@ -37,8 +37,8 @@ public class NewLvl extends Group{
 		
 		Text text = new Text(s[0]);
 		text.setFont(f);
-		text.setTranslateX((size-text.getLayoutBounds().getWidth())/2);
-		text.setTranslateY((size-text.getLayoutBounds().getHeight())/2);
+		text.setTranslateX(size/2-text.getLayoutBounds().getWidth()/2);
+		text.setTranslateY(size/2-text.getLayoutBounds().getHeight()/2);
 		
 		this.getChildren().addAll(r, text);
 		
