@@ -2,7 +2,10 @@ package blocks;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
+/**
+ * 
+ * @author Mattias
+ */
 public class Door extends Block implements isDoor{
 
 	private static Rectangle door;

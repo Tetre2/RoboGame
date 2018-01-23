@@ -9,7 +9,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
+/**
+ * 
+ * @author Mattias
+ */
 public class NewLvl extends Group{
 
 	public String Name;

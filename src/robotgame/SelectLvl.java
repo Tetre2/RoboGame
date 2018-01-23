@@ -6,7 +6,10 @@ import java.util.ArrayList;
 import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-
+/**
+ * 
+ * @author Mattias
+ */
 public class SelectLvl extends Group{
 
 	private double btnSize = (main.WORLD_WIDTH+ main.WORLD_HIGHT)/20;

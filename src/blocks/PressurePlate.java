@@ -7,7 +7,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import robotgame.main;
-
+/**
+ * 
+ * @author Mattias
+ */
 public class PressurePlate extends Block implements NotCollidable{
 
 	public static boolean isPressed = false;

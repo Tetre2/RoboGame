@@ -2,7 +2,10 @@ package blocks;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-
+/**
+ * 
+ * @author Mattias
+ */
 public class Point extends Block implements Collectible{
 
 	public Point(double square_size) {

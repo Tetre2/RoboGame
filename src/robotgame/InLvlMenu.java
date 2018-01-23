@@ -6,7 +6,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-
+/**
+ * 
+ * @author Mattias :P
+ */
 public class InLvlMenu extends Group implements NotCollidable{
 
 	public InLvlMenu(double BUTTEN_SIZE) {

@@ -15,7 +15,10 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-
+/**
+ * 
+ * @author Mattias :P
+ */
 public class Robot extends Group {
 
 	private final double SQUARE_SIZE;

@@ -2,7 +2,7 @@ package blocks;
 
 /**
  * Empty Interface to identify collectible objects.
- * @author Joakim
+ * @author Mattias
  */
 public interface Collectible {
 

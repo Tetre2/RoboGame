@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 
 /**
  * 
- * @author Joakim
+ * @author Mattias
  */
 public abstract class Block extends Group{
 	

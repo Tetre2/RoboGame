@@ -8,7 +8,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-
+/**
+ * 
+ * @author Mattias :P
+ */
 public class PlayerInputStack extends Group{
 
 	public static Button[] playerInputStackButtons = new Button[10];
@@ -29,6 +32,8 @@ public class PlayerInputStack extends Group{
 		Group exeStack = new Group();
 		
 		Circle cir = new Circle(Button.BUTTON_SIZE/2);
+		cir.setStrokeWidth(Button.BUTTON_SIZE/15);
+		cir.setStroke(Color.BLACK);
 		cir.setFill(Color.LIME);
 		
 		Polygon arrow = new Polygon(-Button.BUTTON_SIZE/4,Button.BUTTON_SIZE/4, 0,-Button.BUTTON_SIZE/4, Button.BUTTON_SIZE/4,Button.BUTTON_SIZE/4);

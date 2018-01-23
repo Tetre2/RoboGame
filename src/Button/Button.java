@@ -3,11 +3,16 @@ package Button;
 import java.util.ArrayList;
 
 import javafx.scene.Group;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.MouseButton;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import robotgame.PlayerInputStack;
-
+/**
+ * 
+ * @author Mattias :P
+ */
 public abstract class Button extends Group{
 
 	public static double BUTTON_SIZE;
@@ -33,10 +38,12 @@ public abstract class Button extends Group{
 		this.getChildren().addAll(bg, arrow);
 
 		this.setOnMousePressed(event->{
-
-			bg.setFill(Color.rgb(107, 161, 183));
-			PlayerInputStack.addToPlayerInputStack(this);
+			if(event.getButton() == MouseButton.PRIMARY){
+				
+				bg.setFill(Color.rgb(107, 161, 183));
+				PlayerInputStack.addToPlayerInputStack(this);
 			
+			}
 		});
 
 		this.setOnMouseReleased(event->{
