@@ -12,6 +12,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -29,11 +30,11 @@ public class main extends Application{
 
 	private Group mainMenu = new Group();
 	public static Scene menu;
-	
+
 	public static Stage primaryStage;
 
 	public static Scene lvlComplet;
-	
+
 	private static Scene levelSelect;
 
 	public static Font getGameFont(){
@@ -64,9 +65,8 @@ public class main extends Application{
 	public void startGame(Stage primaryStage){
 
 		this.primaryStage = primaryStage;
-		
-		Label start = new Label();
-		start.setText("New Game");
+
+		Group start = createTextBtn("New Game", getGameFont());
 		start.setTranslateX(WORLD_WIDTH/30);
 		start.setTranslateY(WORLD_HIGHT- WORLD_HIGHT*4/10);
 		start.setOnMouseClicked(event->{
@@ -75,8 +75,7 @@ public class main extends Application{
 
 		});
 
-		Label lvlSelect = new Label();
-		lvlSelect.setText("Select Level");
+		Group lvlSelect = createTextBtn("Select Level", getGameFont());
 		lvlSelect.setTranslateX(WORLD_WIDTH/30);
 		lvlSelect.setTranslateY(WORLD_HIGHT- WORLD_HIGHT*3/10);
 		lvlSelect.setOnMouseClicked(event->{
@@ -87,8 +86,7 @@ public class main extends Application{
 
 
 
-		Label quit = new Label();
-		quit.setText("Quit");
+		Group quit = createTextBtn("Quit", getGameFont());
 		quit.setTranslateX(WORLD_WIDTH/30);
 		quit.setTranslateY(WORLD_HIGHT- WORLD_HIGHT*2/10);
 		quit.setOnMouseClicked(event->{
@@ -96,32 +94,27 @@ public class main extends Application{
 			System.exit(0);
 
 		});
-
-		start.setFont(getGameFont());
-		quit.setFont(getGameFont());
-		lvlSelect.setFont(getGameFont());
-
+		
 
 		mainMenu.getChildren().addAll(start, quit, lvlSelect);
-		
+
 		/*--------------------------------------------*/
-		
+
 		Group lvlSelectWindow = new SelectLvl(primaryStage);
 
 		levelSelect = new Scene(lvlSelectWindow,WORLD_WIDTH,WORLD_HIGHT);
-		
-		
+
+
 		/*--------------------------------------------*/
 
 		Group lvlCompletRoot = new Group();
-		
+
 		Text lvlCleared = new Text("LEVEL CLEARD!");
 		lvlCleared.setFont(getGameFont());
 		lvlCleared.setTranslateX(WORLD_WIDTH/2-lvlCleared.getLayoutBounds().getWidth()/2);
 		lvlCleared.setTranslateY(WORLD_HIGHT/10);
-		
-		Label back = new Label();
-		back.setText("Main Menu");
+
+		Group back = createTextBtn("Main Menu", getGameFont());
 		back.setTranslateX(main.WORLD_WIDTH/30);
 		back.setTranslateY(main.WORLD_HIGHT - main.WORLD_HIGHT/10);
 		back.setOnMouseClicked(event->{
@@ -129,14 +122,14 @@ public class main extends Application{
 			primaryStage.setScene(menu);
 
 		});
-		
+
 		lvlCompletRoot.getChildren().addAll(lvlCleared, back);
 
 		lvlComplet = new Scene(lvlCompletRoot, WORLD_WIDTH,WORLD_HIGHT);
 
-		
+
 		/*--------------------------------------------*/
-		
+
 	}
 
 
@@ -160,8 +153,8 @@ public class main extends Application{
 		PlayerInputStack p = new PlayerInputStack();
 
 		InLvlMenu options = new InLvlMenu(BUTTEN_SIZE);
-		
-		
+
+
 		root.getChildren().addAll(up, left, right, p, options);
 
 
@@ -182,27 +175,68 @@ public class main extends Application{
 		primaryStage.setScene(scene);
 
 	}
-	
+
 	public static void goToLvlSelect(){
 
 		primaryStage.setScene(levelSelect);
-		
+
 	}
-	
+
 	public static void goToMainMenu(){
 
 		primaryStage.setScene(menu);
-		
+
 	}
-	
+
 
 	public static void clearedLvl(){
-		
+
 		primaryStage.setScene(lvlComplet);
-		
+
 	}
-	
-	
+
+	public Group createTextBtn(String s, Font f){
+
+		Text t = new Text(s);
+		t.setFont(f);
+
+		double textWidth = t.getLayoutBounds().getWidth();
+		double textHight = t.getLayoutBounds().getHeight();
+
+		Rectangle r = new Rectangle(textWidth+ textWidth/4, textHight+ textHight/2);
+		r.setArcHeight(textHight/3);
+		r.setArcWidth(textHight/3);
+		r.setStrokeWidth(textHight/15);
+		r.setStroke(Color.BLACK);
+		r.setFill(Color.rgb(204, 204, 255));
+
+		
+		t.setTranslateX(textWidth/8);
+		t.setTranslateY(textHight + textHight/8);
+		
+		Group g = new Group();
+		g.getChildren().addAll(r,t);
+
+		
+
+		g.setOnMouseEntered(event->{
+
+			r.setFill(Color.rgb(255, 153, 102));
+
+		});
+
+		g.setOnMouseExited(event->{
+
+			r.setFill(Color.rgb(204, 204, 255));
+
+		});
+
+
+		return g;
+
+	}
+
+
 	public static void main(String[] args) {
 		launch(args);
 	}

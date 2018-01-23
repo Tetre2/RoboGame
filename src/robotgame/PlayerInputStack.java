@@ -31,7 +31,7 @@ public class PlayerInputStack extends Group{
 		
 		Group exeStack = new Group();
 		
-		Circle cir = new Circle(Button.BUTTON_SIZE/2);
+		Circle cir = new Circle(Button.BUTTON_SIZE/2-Button.BUTTON_SIZE/15);
 		cir.setStrokeWidth(Button.BUTTON_SIZE/15);
 		cir.setStroke(Color.BLACK);
 		cir.setFill(Color.LIME);
@@ -62,6 +62,9 @@ public class PlayerInputStack extends Group{
 		
 		Rectangle r = new Rectangle(Button.BUTTON_SIZE, Button.BUTTON_SIZE);
 		r.setFill(Color.RED);
+		r.setStrokeWidth(Button.BUTTON_SIZE/15);
+		r.setStroke(Color.BLACK);
+		
 		Rectangle inerR = new Rectangle(Button.BUTTON_SIZE-Button.BUTTON_SIZE/3, Button.BUTTON_SIZE-Button.BUTTON_SIZE/3);
 		inerR.setTranslateX(Button.BUTTON_SIZE/6);
 		inerR.setTranslateY(Button.BUTTON_SIZE/6);
