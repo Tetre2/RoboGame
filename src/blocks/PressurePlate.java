@@ -73,7 +73,7 @@ public class PressurePlate extends Block implements NotCollidable{
 
 			double totPosX = n.getTranslateX();
 			double totPosY = n.getTranslateY();
-			Parent p =n.getParent();
+			Parent p = n.getParent();
 
 
 			while(p.getParent() != null){
@@ -95,13 +95,6 @@ public class PressurePlate extends Block implements NotCollidable{
 				return true;
 			}
 
-//			if(this.getBoundsInParent().intersects(n.getBoundsInParent())){
-//
-//				return true;
-//
-//			}
-
-
 		}
 
 
@@ -109,7 +102,7 @@ public class PressurePlate extends Block implements NotCollidable{
 
 			for (Node childNode : ((Parent) n).getChildrenUnmodifiable()) {
 
-				if (checkCollision(childNode) /* && (!(n instanceof MapInterpreter))*/) {
+				if (checkCollision(childNode)){
 
 					return true;
 

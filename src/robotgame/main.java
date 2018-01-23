@@ -10,8 +10,9 @@ import Button.UP;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -39,7 +40,16 @@ public class main extends Application{
 
 	public static Font getGameFont(){
 		try {
-			return Font.loadFont(new FileInputStream(new File("8-BIT.TTF")), 20);
+			return Font.loadFont(new FileInputStream(new File("8-BIT.TTF")), (WORLD_WIDTH+WORLD_HIGHT)/90);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return Font.getDefault();
+	}
+	
+	public static Font getGameFont(int i){
+		try {
+			return Font.loadFont(new FileInputStream(new File("8-BIT.TTF")), i);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -62,41 +72,11 @@ public class main extends Application{
 
 	}
 
-	public void startGame(Stage primaryStage){
+	private void startGame(Stage pStage){
 
-		this.primaryStage = primaryStage;
+		primaryStage = pStage;
 
-		Group start = createTextBtn("New Game", getGameFont());
-		start.setTranslateX(WORLD_WIDTH/30);
-		start.setTranslateY(WORLD_HIGHT- WORLD_HIGHT*4/10);
-		start.setOnMouseClicked(event->{
-
-			goToLvlSelect();
-
-		});
-
-		Group lvlSelect = createTextBtn("Select Level", getGameFont());
-		lvlSelect.setTranslateX(WORLD_WIDTH/30);
-		lvlSelect.setTranslateY(WORLD_HIGHT- WORLD_HIGHT*3/10);
-		lvlSelect.setOnMouseClicked(event->{
-
-			goToLvlSelect();
-
-		});
-
-
-
-		Group quit = createTextBtn("Quit", getGameFont());
-		quit.setTranslateX(WORLD_WIDTH/30);
-		quit.setTranslateY(WORLD_HIGHT- WORLD_HIGHT*2/10);
-		quit.setOnMouseClicked(event->{
-
-			System.exit(0);
-
-		});
-		
-
-		mainMenu.getChildren().addAll(start, quit, lvlSelect);
+		mainMenuSetup();
 
 		/*--------------------------------------------*/
 
@@ -133,6 +113,102 @@ public class main extends Application{
 	}
 
 
+	private void mainMenuSetup(){
+		
+		Group start = createTextBtn("New Game", getGameFont());
+		start.setTranslateX(WORLD_WIDTH/30);
+		start.setTranslateY(WORLD_HIGHT- WORLD_HIGHT*4/10);
+		start.setOnMouseClicked(event->{
+
+			goToLvlSelect();
+
+		});
+
+		Group lvlSelect = createTextBtn("Select Level", getGameFont());
+		lvlSelect.setTranslateX(WORLD_WIDTH/30);
+		lvlSelect.setTranslateY(WORLD_HIGHT- WORLD_HIGHT*3/10);
+		lvlSelect.setOnMouseClicked(event->{
+
+			goToLvlSelect();
+
+		});
+
+		Group quit = createTextBtn("Quit", getGameFont());
+		quit.setTranslateX(WORLD_WIDTH/30);
+		quit.setTranslateY(WORLD_HIGHT- WORLD_HIGHT*2/10);
+		quit.setOnMouseClicked(event->{
+
+			System.exit(0);
+
+		});
+		
+
+		
+
+		double SQUARE_SIZE = (WORLD_HIGHT + WORLD_WIDTH)/4;
+		final Color GRAY = Color.GRAY;
+
+		final double SIZE = SQUARE_SIZE - 2;
+		final double MIDDLE = SIZE / 2;
+		final double BODY_RADIUS = (SIZE - SIZE / 4) / 2;
+		final double EYE_ANGLE = 20;
+		final double BACK_ANGLE = 60;
+		final double EYE_RADIUS = SIZE / 15;
+		final double WHEEL_SIZE = 0.9 * SIZE;
+
+		Rectangle bg = new Rectangle();
+		bg.setWidth(SIZE);
+		bg.setHeight(SIZE);
+		bg.setFill(Color.TRANSPARENT);
+
+		Arc body = new Arc();
+		body.setRadiusX(BODY_RADIUS);
+		body.setRadiusY(BODY_RADIUS);
+		body.setCenterX(MIDDLE);
+		body.setCenterY(MIDDLE);
+		body.setStartAngle(-BACK_ANGLE);
+		body.setLength(180 + 2 * BACK_ANGLE);
+		body.setFill(GRAY);
+
+		Eye leftEye = new Eye();
+		leftEye.setRadius(EYE_RADIUS);
+		leftEye.setCenterX(MIDDLE - BODY_RADIUS * Math.cos(Math.toRadians(90 - EYE_ANGLE)));
+		leftEye.setCenterY(MIDDLE - BODY_RADIUS * Math.sin(Math.toRadians(90 - EYE_ANGLE)));
+		leftEye.setFill(Color.LIME);
+
+		Eye rightEye = new Eye();
+		rightEye.setRadius(EYE_RADIUS);
+		rightEye.setCenterX(MIDDLE + BODY_RADIUS * Math.cos(Math.toRadians(90 - EYE_ANGLE)));
+		rightEye.setCenterY(MIDDLE - BODY_RADIUS * Math.sin(Math.toRadians(90 - EYE_ANGLE)));
+		rightEye.setFill(Color.LIME);
+
+		Rectangle wheels = new Rectangle();
+		wheels.setWidth(WHEEL_SIZE);
+		wheels.setHeight(BODY_RADIUS * Math.sin(Math.toRadians(BACK_ANGLE)) * 1.5);
+		wheels.setTranslateX((SIZE - WHEEL_SIZE) / 2);
+		wheels.setTranslateY(MIDDLE - wheels.getHeight() / 2);
+		wheels.setFill(Color.LIME);
+
+		Polygon triangle = new Polygon(MIDDLE + BODY_RADIUS / 2, MIDDLE, MIDDLE - BODY_RADIUS / 2, MIDDLE, MIDDLE,
+				MIDDLE - Math.sqrt(3) * (BODY_RADIUS / 2));
+		triangle.setTranslateY(Math.sqrt(3) * (BODY_RADIUS / 6));
+		triangle.setFill(Color.LIME);
+
+		Group gr = new Group();
+		
+		gr.getChildren().addAll(bg, rightEye, leftEye, wheels, body, triangle);
+		gr.setTranslateX(WORLD_WIDTH/2);
+		gr.setTranslateY(WORLD_HIGHT/3);
+		
+		Text welcome = new Text("Welcome to the Robot Game");
+		welcome.setFont(getGameFont( (int) (WORLD_HIGHT + WORLD_WIDTH)/70));
+		welcome.setTranslateX(WORLD_WIDTH/2 - welcome.getLayoutBounds().getWidth()/2);
+		welcome.setTranslateY(WORLD_HIGHT/10);
+		
+		mainMenu.getChildren().addAll(start, quit, lvlSelect, gr, welcome);
+		
+	}
+	
 
 	public static void createButtens(){
 
@@ -195,7 +271,7 @@ public class main extends Application{
 
 	}
 
-	public Group createTextBtn(String s, Font f){
+	public static Group createTextBtn(String s, Font f){
 
 		Text t = new Text(s);
 		t.setFont(f);
@@ -203,7 +279,11 @@ public class main extends Application{
 		double textWidth = t.getLayoutBounds().getWidth();
 		double textHight = t.getLayoutBounds().getHeight();
 
-		Rectangle r = new Rectangle(textWidth+ textWidth/4, textHight+ textHight/2);
+		Text x = new Text("x");
+		x.setFont(f);
+		double wordSpacing = x.getLayoutBounds().getWidth();
+		
+		Rectangle r = new Rectangle(textWidth+ wordSpacing*2, textHight+ textHight/2);
 		r.setArcHeight(textHight/3);
 		r.setArcWidth(textHight/3);
 		r.setStrokeWidth(textHight/15);
@@ -211,7 +291,7 @@ public class main extends Application{
 		r.setFill(Color.rgb(204, 204, 255));
 
 		
-		t.setTranslateX(textWidth/8);
+		t.setTranslateX(wordSpacing);
 		t.setTranslateY(textHight + textHight/8);
 		
 		Group g = new Group();

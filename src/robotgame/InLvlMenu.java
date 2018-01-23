@@ -120,14 +120,21 @@ public class InLvlMenu extends Group implements NotCollidable{
 
 		double textWidth = t.getLayoutBounds().getWidth();
 		double textHight = t.getLayoutBounds().getHeight();
+		
+		Text x = new Text("x");
+		x.setFont(f);
+		double wordSpacing = x.getLayoutBounds().getWidth();
 
-		Rectangle r = new Rectangle(-textWidth/8, -textHight-textHight/8, textWidth+ textWidth/4, textHight+ textHight/2);
+		Rectangle r = new Rectangle(textWidth+ wordSpacing*2, textHight+ textHight/2);
 		r.setArcHeight(textHight/3);
 		r.setArcWidth(textHight/3);
 		r.setStrokeWidth(textHight/15);
 		r.setStroke(Color.BLACK);
 		r.setFill(Color.rgb(204, 204, 255));
 
+		t.setTranslateX(wordSpacing);
+		t.setTranslateY(textHight + textHight/8);
+		
 		Group g = new Group();
 		g.getChildren().addAll(r,t);
 

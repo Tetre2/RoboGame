@@ -22,10 +22,11 @@ import javafx.scene.Group;
  */
 public class MapInterpreter extends Group {
 	
-	public final double SQUARE_SIZE = (main.WORLD_WIDTH+main.WORLD_HIGHT)/50;
+	public static final double SQUARE_SIZE = (main.WORLD_WIDTH+main.WORLD_HIGHT)/50;
 	
 	public static Robot r;
 	public static ArrayList<Robot> allRobots = new ArrayList<>();
+	private ArrayList<Integer> temp = new ArrayList<>();
 
 	public MapInterpreter(String path) throws FileNotFoundException {
 		
@@ -50,7 +51,9 @@ public class MapInterpreter extends Group {
 					break;
 					
 				case 'M':
-					b = new BlockMovable(SQUARE_SIZE);
+//					b = new BlockMovable(SQUARE_SIZE);
+					temp.add(x);
+					temp.add(y);
 					break;
 
 				case 'P':
@@ -101,6 +104,14 @@ public class MapInterpreter extends Group {
 			this.getChildren().add(r);
 			allRobots.add(r);
 		}
+		
+		for (int i = 0; i < temp.size(); i += 2) {
+			Block b = new BlockMovable(SQUARE_SIZE);
+			b.setTranslateX(temp.get(i) * SQUARE_SIZE-1);
+			b.setTranslateY(temp.get(i + 1) * SQUARE_SIZE-1);
+			this.getChildren().add(b);
+		}
+		temp.clear();
 
 	}
 	

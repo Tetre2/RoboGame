@@ -58,18 +58,15 @@ public class SelectLvl extends Group{
 		}
 
 
-		Label back = new Label();
-		back.setText("Back");
+		Group back = main.createTextBtn("Back", main.getGameFont());
 		back.setTranslateX(main.WORLD_WIDTH/30);
-		back.setTranslateY(main.WORLD_HIGHT - main.WORLD_HIGHT/10);
+		back.setTranslateY(main.WORLD_HIGHT - main.WORLD_HIGHT/8);
 		back.setOnMouseClicked(event->{
 
 			primaryStage.setScene(main.menu);
 
 		});
 
-
-		back.setFont(main.getGameFont());
 		this.getChildren().add(back);
 
 

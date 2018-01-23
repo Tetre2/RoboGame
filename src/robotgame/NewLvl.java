@@ -16,20 +16,22 @@ import javafx.scene.text.Text;
 public class NewLvl extends Group{
 
 	public String Name;
-	
+
 	public NewLvl(Double size, String Name){
-		
+
 		this.Name = Name;
-		
+
 		Rectangle r = new Rectangle(size, size);
 		r.setArcHeight(size/3);
 		r.setArcWidth(size/3);
-		r.setFill(Color.BEIGE);
+		r.setStrokeWidth(size/30);
+		r.setStroke(Color.BLACK);
+		r.setFill(Color.rgb(204, 204, 255));
 
 		String[] s = Name.split("[.]");	
-		
+
 		Font f = Font.getDefault();
-		
+
 		try {
 			f = (Font.loadFont(new FileInputStream(new File("8-BIT.TTF")), size/8));
 
@@ -37,19 +39,34 @@ public class NewLvl extends Group{
 
 			e.printStackTrace();
 		}
-		
+
 		Text text = new Text(s[0]);
 		text.setFont(f);
 		text.setTranslateX(size/2-text.getLayoutBounds().getWidth()/2);
 		text.setTranslateY(size/2-text.getLayoutBounds().getHeight()/2);
-		
+
 		this.getChildren().addAll(r, text);
-		
+
+		this.setOnMouseEntered(event->{
+
+			r.setFill(Color.rgb(255, 153, 102));
+
+
+		});
+
+		this.setOnMouseExited(event->{
+
+			r.setFill(Color.rgb(204, 204, 255));
+
+		});
+
+
+
 	}
-	
+
 	public String getName(){
 		return this.Name;
 	}
-	
-	
+
+
 }

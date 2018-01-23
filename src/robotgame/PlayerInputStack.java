@@ -25,6 +25,8 @@ public class PlayerInputStack extends Group{
 		bg.setTranslateX(main.WORLD_WIDTH/12);
 		bg.setTranslateY((main.WORLD_HIGHT - main.WORLD_HIGHT*19/84) - Button.BUTTON_SIZE/2);
 		bg.setFill(Color.rgb(136, 143, 233));
+		bg.setStrokeWidth(Button.BUTTON_SIZE/15);
+		bg.setStroke(Color.BLACK);
 		this.getChildren().add(bg);
 
 		newButtonSetUp();
