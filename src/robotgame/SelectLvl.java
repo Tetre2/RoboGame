@@ -7,7 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 /**
- * 
+ * The menu where you select level
  * @author Mattias
  */
 public class SelectLvl extends Group{

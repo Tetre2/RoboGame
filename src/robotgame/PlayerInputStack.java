@@ -9,7 +9,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 /**
- * 
+ * The Bar where the button pressed is visualy stored
  * @author Mattias :P
  */
 public class PlayerInputStack extends Group{

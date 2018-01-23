@@ -16,7 +16,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 /**
- * 
+ * Jaoks dumma robot
  * @author Mattias :P
  */
 public class Robot extends Group {

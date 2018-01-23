@@ -3,7 +3,7 @@ package blocks;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 /**
- * 
+ * Its a door, its activated by presurplate
  * @author Mattias
  */
 public class Door extends Block implements isDoor{

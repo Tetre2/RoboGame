@@ -10,7 +10,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import robotgame.PlayerInputStack;
 /**
- * 
+ * Base butten
  * @author Mattias :P
  */
 public abstract class Button extends Group{

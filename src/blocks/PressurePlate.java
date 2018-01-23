@@ -8,7 +8,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import robotgame.main;
 /**
- * 
+ * When pressed door is opened
  * @author Mattias
  */
 public class PressurePlate extends Block implements NotCollidable{

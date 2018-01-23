@@ -2,7 +2,7 @@ package blocks;
 
 import javafx.scene.paint.Color;
 /**
- * 
+ * Not used yet
  * @author Mattias :P
  */
 public class BackgroundBlock extends Block implements NotCollidable{

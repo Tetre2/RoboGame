@@ -16,7 +16,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 /**
- * 
+ * The main class
  * @author Mattias :P
  */
 public class main extends Application{

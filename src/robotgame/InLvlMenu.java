@@ -7,7 +7,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 /**
- * 
+ * The menue acceable throuhg in game
  * @author Mattias :P
  */
 public class InLvlMenu extends Group implements NotCollidable{

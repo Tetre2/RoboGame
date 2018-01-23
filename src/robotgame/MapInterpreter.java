@@ -17,7 +17,7 @@ import blocks.WallBlock;
 import javafx.scene.Group;
 
 /**
- * 
+ * Reads txt files to maps
  * @author Mattias :P
  */
 public class MapInterpreter extends Group {
