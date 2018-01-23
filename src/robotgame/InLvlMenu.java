@@ -1,12 +1,13 @@
 package robotgame;
 
+import blocks.NotCollidable;
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-public class InLvlMenu extends Group{
+public class InLvlMenu extends Group implements NotCollidable{
 
 	public InLvlMenu(double BUTTEN_SIZE) {
 
@@ -91,8 +92,8 @@ public class InLvlMenu extends Group{
 		g.getChildren().addAll(blure,bg, resume, selectLvl, mainMenu);
 		this.getChildren().addAll(otionBtn, g);
 
-
-
+		g.setVisible(false);
+		
 		otionBtn.setOnMouseClicked(event->{
 
 			g.setVisible(true);
