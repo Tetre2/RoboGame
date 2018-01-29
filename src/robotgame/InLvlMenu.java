@@ -63,6 +63,7 @@ public class InLvlMenu extends Group implements NotCollidable{
 		resume.setOnMouseClicked(event->{
 
 			g.setVisible(false);
+			main.startGameTimer();
 
 		});
 
@@ -100,12 +101,14 @@ public class InLvlMenu extends Group implements NotCollidable{
 		otionBtn.setOnMouseClicked(event->{
 
 			g.setVisible(true);
+			main.stopGameTimer();
 
 		});
 
 		blure.setOnMouseClicked(event->{
 
 			g.setVisible(false);
+			main.startGameTimer();
 
 		});
 

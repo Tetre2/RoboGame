@@ -231,8 +231,8 @@ public class Robot extends Group {
 
 			@Override
 			public void handle(long now) {
-				setRotate(getRotate() + 2);
-				rotate += 2;
+				setRotate(getRotate() + 5);
+				rotate += 5;
 				if (rotate == 90) {
 					setState(State.FREE);
 					this.stop();
@@ -248,8 +248,8 @@ public class Robot extends Group {
 
 			@Override
 			public void handle(long now) {
-				setRotate(getRotate() - 2);
-				rotate -= 2;
+				setRotate(getRotate() - 5);
+				rotate -= 5;
 				if (rotate == -90) {
 					setState(State.FREE);
 					this.stop();
@@ -265,13 +265,13 @@ public class Robot extends Group {
 
 			@Override
 			public void handle(long now) {
-				setTranslateX(Math.cos(Math.toRadians(270 + getRotate())) + getTranslateX());
-				setTranslateY(Math.sin(Math.toRadians(270 + getRotate())) + getTranslateY());
+				setTranslateX(Math.cos(Math.toRadians(270 + getRotate()))*4 + getTranslateX());
+				setTranslateY(Math.sin(Math.toRadians(270 + getRotate()))*4 + getTranslateY());
 				if (moveObject != null) {
-					moveObject.setTranslateX(Math.cos(Math.toRadians(270 + getRotate())) + moveObject.getTranslateX());
-					moveObject.setTranslateY(Math.sin(Math.toRadians(270 + getRotate())) + moveObject.getTranslateY());
+					moveObject.setTranslateX(Math.cos(Math.toRadians(270 + getRotate()))*4 + moveObject.getTranslateX());
+					moveObject.setTranslateY(Math.sin(Math.toRadians(270 + getRotate()))*4 + moveObject.getTranslateY());
 				}
-				move++;
+				move+=4;
 				if (move == SQUARE_SIZE) {
 					moveObject = null;
 					setState(State.FREE);

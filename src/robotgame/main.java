@@ -2,11 +2,14 @@ package robotgame;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import Button.Button;
 import Button.Left;
 import Button.Right;
 import Button.UP;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -38,6 +41,8 @@ public class main extends Application{
 
 	private static Scene levelSelect;
 
+	private static AnimationTimer gameTimer;
+
 	public static Font getGameFont(){
 		try {
 			return Font.loadFont(new FileInputStream(new File("8-BIT.TTF")), (WORLD_WIDTH+WORLD_HIGHT)/90);
@@ -46,7 +51,7 @@ public class main extends Application{
 		}
 		return Font.getDefault();
 	}
-	
+
 	public static Font getGameFont(int i){
 		try {
 			return Font.loadFont(new FileInputStream(new File("8-BIT.TTF")), i);
@@ -66,8 +71,24 @@ public class main extends Application{
 
 		menu = new Scene(mainMenu,WORLD_WIDTH,WORLD_HIGHT);
 
+		primaryStage.setTitle("Robot Game");
 		primaryStage.setScene(menu);
 		primaryStage.show();
+
+		data();
+
+	}
+
+	public void data(){
+
+		try {
+			FileWriter fw = new FileWriter("SavedData.txt");
+
+			fw.write("Hej");
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 
 	}
@@ -114,7 +135,7 @@ public class main extends Application{
 
 
 	private void mainMenuSetup(){
-		
+
 		Group start = createTextBtn("New Game", getGameFont());
 		start.setTranslateX(WORLD_WIDTH/30);
 		start.setTranslateY(WORLD_HIGHT- WORLD_HIGHT*4/10);
@@ -141,9 +162,22 @@ public class main extends Application{
 			System.exit(0);
 
 		});
-		
 
-		
+
+
+		createOverSizedRobot();
+
+		Text welcome = new Text("Welcome to the Robot Game");
+		welcome.setFont(getGameFont( (int) (WORLD_HIGHT + WORLD_WIDTH)/70));
+		welcome.setTranslateX(WORLD_WIDTH/2 - welcome.getLayoutBounds().getWidth()/2);
+		welcome.setTranslateY(WORLD_HIGHT/10);
+
+		mainMenu.getChildren().addAll(start, quit, lvlSelect, welcome);
+
+	}
+
+
+	private void createOverSizedRobot(){
 
 		double SQUARE_SIZE = (WORLD_HIGHT + WORLD_WIDTH)/4;
 		final Color GRAY = Color.GRAY;
@@ -195,20 +229,14 @@ public class main extends Application{
 		triangle.setFill(Color.LIME);
 
 		Group gr = new Group();
-		
+
 		gr.getChildren().addAll(bg, rightEye, leftEye, wheels, body, triangle);
 		gr.setTranslateX(WORLD_WIDTH/2);
 		gr.setTranslateY(WORLD_HIGHT/3);
-		
-		Text welcome = new Text("Welcome to the Robot Game");
-		welcome.setFont(getGameFont( (int) (WORLD_HIGHT + WORLD_WIDTH)/70));
-		welcome.setTranslateX(WORLD_WIDTH/2 - welcome.getLayoutBounds().getWidth()/2);
-		welcome.setTranslateY(WORLD_HIGHT/10);
-		
-		mainMenu.getChildren().addAll(start, quit, lvlSelect, gr, welcome);
-		
+
+		mainMenu.getChildren().add(gr);
+
 	}
-	
 
 	public static void createButtens(){
 
@@ -236,6 +264,49 @@ public class main extends Application{
 
 	}
 
+	public static void createTimer(){
+		Rectangle r = new Rectangle(WORLD_WIDTH-WORLD_WIDTH/10-WORLD_WIDTH/50, WORLD_HIGHT-WORLD_HIGHT/8-WORLD_HIGHT/30, WORLD_WIDTH/10, WORLD_HIGHT/8);
+		r.setArcHeight(WORLD_WIDTH/10/3);
+		r.setArcWidth(WORLD_WIDTH/10/3);
+		r.setStrokeWidth(WORLD_WIDTH/10/30);
+		r.setStroke(Color.BLACK);
+		r.setFill(Color.rgb(136, 143, 233));
+		
+		Text t = new Text("0");
+		t.setFont(getGameFont());
+		t.setTranslateX(WORLD_WIDTH-WORLD_WIDTH/10);
+		t.setTranslateY(WORLD_HIGHT-WORLD_HIGHT/8+t.getLayoutBounds().getHeight());
+		
+		
+		
+		gameTimer = new AnimationTimer() {
+
+			long time = 0;
+			int counter = 0;
+			@Override
+			public void handle(long now) {
+
+				if(now-time >= 1_000_000_000){
+					time = now;
+
+					counter++;
+					t.setText(counter+"");
+
+				}
+			}
+		};
+		startGameTimer();
+		root.getChildren().addAll(r,t);
+	}
+
+	public static void startGameTimer(){
+		gameTimer.start();
+	}
+
+	public static void stopGameTimer(){
+		gameTimer.stop();
+	}
+
 	public static void createGame(String s){
 
 		try {
@@ -243,6 +314,8 @@ public class main extends Application{
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+
+		createTimer();
 
 		scene = new Scene(root,WORLD_WIDTH,WORLD_HIGHT);
 
@@ -282,7 +355,7 @@ public class main extends Application{
 		Text x = new Text("x");
 		x.setFont(f);
 		double wordSpacing = x.getLayoutBounds().getWidth();
-		
+
 		Rectangle r = new Rectangle(textWidth+ wordSpacing*2, textHight+ textHight/2);
 		r.setArcHeight(textHight/3);
 		r.setArcWidth(textHight/3);
@@ -290,14 +363,14 @@ public class main extends Application{
 		r.setStroke(Color.BLACK);
 		r.setFill(Color.rgb(204, 204, 255));
 
-		
+
 		t.setTranslateX(wordSpacing);
 		t.setTranslateY(textHight + textHight/8);
-		
+
 		Group g = new Group();
 		g.getChildren().addAll(r,t);
 
-		
+
 
 		g.setOnMouseEntered(event->{
 
