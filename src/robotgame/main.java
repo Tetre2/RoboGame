@@ -1,9 +1,13 @@
 package robotgame;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 import Button.Button;
 import Button.Left;
@@ -79,16 +83,34 @@ public class main extends Application{
 
 	}
 
-	public void data(){
+	public void data() throws IOException{
 
-		try {
-			FileWriter fw = new FileWriter("SavedData.txt");
-
-			fw.write("Hej");
-			fw.close();
+		try (FileWriter fw = new FileWriter("savedData.txt", true);
+			BufferedWriter bw = new BufferedWriter(fw);
+			PrintWriter out = new PrintWriter(bw)){
+			
+			out.print("dkjfks ");
+			
 		} catch (IOException e) {
-			e.printStackTrace();
+			
+//			PrintWriter writer = new PrintWriter("SavedData.txt", "UTF-8");
+//			writer.println("The first line");
+//			writer.println("The second line");
+//			writer.close();
+//
+//			byte data[] = null;
+//			FileOutputStream out = new FileOutputStream("SavedData");
+//			out.write(data);
+//			out.close();
+			System.out.println("jfd");
+			
 		}
+		
+		
+		
+		FileWriter fw = new FileWriter("savedData.txt",true); //the true will append the new data
+	    fw.write("add a line\n");//appends the string to the file
+	    fw.close();
 
 
 	}

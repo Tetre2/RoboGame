@@ -37,6 +37,7 @@ public class SelectLvl extends Group{
 					newLvl.setTranslateX(hori * main.WORLD_WIDTH/5 + main.WORLD_WIDTH/6);
 					newLvl.setTranslateY(vert * main.WORLD_HIGHT/5+ main.WORLD_HIGHT/8);
 					lvlArr.add(newLvl);
+					
 					newLvl.setOnMouseClicked(event->{
 
 						main.createGame(newLvl.getName());
