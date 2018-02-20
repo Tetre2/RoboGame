@@ -17,7 +17,7 @@ public class SelectLvl extends Group{
 	private int hori;
 	private int vert;
 
-	public ArrayList<NewLvl> lvlArr = new ArrayList<>();
+	public static ArrayList<NewLvl> lvlArr = new ArrayList<>();
 
 	public SelectLvl(Stage primaryStage){
 

@@ -6,7 +6,9 @@ import java.io.FileNotFoundException;
 
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 /**
@@ -46,6 +48,29 @@ public class NewLvl extends Group{
 		text.setTranslateY(size/2-text.getLayoutBounds().getHeight()/2);
 
 		this.getChildren().addAll(r, text);
+
+		for (int j = 0; j < 3; j++) {
+
+			Polygon p = new Polygon();
+
+			for(int i = 0; i<5; i++){
+				p.getPoints().add(Math.sin(Math.toRadians(108+72*i*2))*size/5/2);
+				p.getPoints().add(Math.cos(Math.toRadians(108+72*i*2))*size/5/2);
+			}
+			p.setFill(Color.YELLOW);
+			p.setStrokeWidth(size/60);
+			p.setStroke(Color.BLACK);
+
+			this.getChildren().add(p);
+			
+			p.setTranslateX(size/4*(j+1));
+			p.setTranslateY(size*3/4);
+			
+			
+			
+		}
+
+
 
 		this.setOnMouseEntered(event->{
 

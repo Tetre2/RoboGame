@@ -8,6 +8,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 import Button.Button;
 import Button.Left;
@@ -47,6 +49,8 @@ public class main extends Application{
 
 	private static AnimationTimer gameTimer;
 
+	
+	
 	public static Font getGameFont(){
 		try {
 			return Font.loadFont(new FileInputStream(new File("8-BIT.TTF")), (WORLD_WIDTH+WORLD_HIGHT)/90);
@@ -79,41 +83,9 @@ public class main extends Application{
 		primaryStage.setScene(menu);
 		primaryStage.show();
 
-		data();
 
 	}
 
-	public void data() throws IOException{
-
-		try (FileWriter fw = new FileWriter("savedData.txt", true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			PrintWriter out = new PrintWriter(bw)){
-			
-			out.print("dkjfks ");
-			
-		} catch (IOException e) {
-			
-//			PrintWriter writer = new PrintWriter("SavedData.txt", "UTF-8");
-//			writer.println("The first line");
-//			writer.println("The second line");
-//			writer.close();
-//
-//			byte data[] = null;
-//			FileOutputStream out = new FileOutputStream("SavedData");
-//			out.write(data);
-//			out.close();
-			System.out.println("jfd");
-			
-		}
-		
-		
-		
-		FileWriter fw = new FileWriter("savedData.txt",true); //the true will append the new data
-	    fw.write("add a line\n");//appends the string to the file
-	    fw.close();
-
-
-	}
 
 	private void startGame(Stage pStage){
 
